@@ -11,9 +11,10 @@ import static at.spengergasse.sst.foundation.AssertUtil.isValidEmail;
 import static at.spengergasse.sst.foundation.EntityUtil.generateUUIDv4;
 
 @Getter
-@ToString
+@ToString(callSuper = true)
 @Document(collection = "user")
-public class User extends BaseEntity<String> {
+public abstract  class User extends BaseEntity<String> {
+
     @Indexed(unique = true)
     private String email;
 
@@ -24,8 +25,6 @@ public class User extends BaseEntity<String> {
 
 
     // ctor --------------------------------------------
-    @PersistenceCreator
-    @JsonCreator
     protected User(String id) {
         super(id);
     }
